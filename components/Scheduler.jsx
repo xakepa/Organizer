@@ -1,9 +1,46 @@
 import { Calendar, dayjsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './calendar.css'
 import dayjs from 'dayjs'
 import 'dayjs/locale/bg'
+import { Modal, Button } from 'react-bootstrap'
+import { useState } from 'react'
+
+function Popup({ event }) {
+    const [showModal, setShowModal] = useState(false)
+    const handleOpenModal = () => setShowModal(true)
+    const handleCloseModal = () => setShowModal(false)
+
+    return (
+        <>
+            <div>
+                <div onClick={handleOpenModal}>{event.title}</div>
+            </div>
+
+            <Modal show={showModal} onHide={handleCloseModal} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>{event.title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {event.description ? (
+                        <strong>Описание:</strong>
+                    ) : ('')}
+                    <p>{event.description}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseModal}>
+                        Затвори
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
+
+
 
 dayjs.locale('bg')
+
 const localizer = dayjsLocalizer(dayjs)
 const messages = {
     today: 'Днес',
@@ -17,11 +54,13 @@ const messages = {
     time: 'Време',
     event: 'Събитие'
 }
+
 const events = [
     {
-        start: dayjs('2024-01-28T12:00:00').toDate(),
-        end: dayjs('2024-01-28T13:00:00').toDate(),
-        title: "Събитие 1"
+        start: dayjs('2024-01-27T12:00:00').toDate(),
+        end: dayjs('2024-01-27T13:00:00').toDate(),
+        title: "Събитие 1",
+        description: 'Lorem ipsum dolor sit amet'
     },
     {
         start: dayjs('2024-01-28T16:00:00').toDate(),
@@ -31,18 +70,25 @@ const events = [
 ]
 
 const Scheduler = () => {
+
     return (
         <div>
             <Calendar
                 localizer={localizer}
                 startAccessor="start"
                 endAccessor="end"
+                defaultView={'week'}
+                views={["week"]}
                 popup={true}
                 events={events}
                 messages={messages}
+                components={{
+                    event: Popup,
+                }}
                 style={{
                     height: "95vh",
-                    width: "90%"
+                    width: "95%",
+                    margin: 'auto'
                 }}
             />
         </div>

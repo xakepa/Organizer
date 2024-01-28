@@ -1,0 +1,25 @@
+.rbc-event {
+    background-color: #fff !important;
+    color: #000;
+  }
+
+  .rbc-day-slot .rbc-event {
+    margin: 10px;
+    max-width: 95% !important;
+    height: auto !important;
+    padding: 10px;
+  }
+
+  .rbc-timeslot-group {
+    min-height: 175px;
+  }
+
+  /* .rbc-current-time-indicator {
+    background-color: #FEF8E5;
+    height: 100px;
+  } */
+
+  .rbc-today {
+    background-color: #FEF8E5 !important;
+
+  }
