@@ -57,15 +57,21 @@ const messages = {
 
 const events = [
     {
-        start: dayjs('2024-01-27T12:00:00').toDate(),
-        end: dayjs('2024-01-27T13:00:00').toDate(),
+        start: dayjs('2024-01-29T12:00:00').toDate(),
+        end: dayjs('2024-01-29T13:00:00').toDate(),
         title: "Събитие 1",
         description: 'Lorem ipsum dolor sit amet'
     },
     {
-        start: dayjs('2024-01-28T16:00:00').toDate(),
-        end: dayjs('2024-01-28T17:00:00').toDate(),
+        start: dayjs('2024-01-30T16:00:00').toDate(),
+        end: dayjs('2024-01-30T17:00:00').toDate(),
         title: "Събитие 2"
+    },
+    {
+        start: dayjs('2024-01-31T09:00:00').toDate(),
+        end: dayjs('2024-01-31T10:00:00').toDate(),
+        title: "Англ. език B2",
+        description: 'Курс по англ. език за напреднали'
     }
 ]
 
@@ -82,6 +88,7 @@ const Scheduler = () => {
                 popup={true}
                 events={events}
                 messages={messages}
+                toolbar={false}
                 components={{
                     event: Popup,
                 }}
